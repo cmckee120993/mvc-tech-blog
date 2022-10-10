@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let's Get Technical!</title>
+  {{!-- <link rel="stylesheet" href="./style.css"> --}}
+</head>
+
+<body>
+  <header class="display-flex justify-space-between align-center p-2">
+    <h1>
+      Let's Get Technical!
+    </h1>
+    <h2>
+        A blog about all things tech related
+    </h2>
+    {{#if logged_in}}
+    <nav>
+        <a href="/" id="home">Home</a>
+        <a href="/dashboard" id="dashboard">Dashboard</a>
+        <a href="/dashboard/create/" classh="create">Create Post</a>
+        <button class="btn" id="logout">Logout</button>
+    </nav>
+    {{/if}}
+
+    {{#if logged_out}}
+    <nav>
+        <a href="/" id="home">Home</a>
+        <input type="text" id="username" placeholder="Username">
+        <input type="text" id="password" placeholder="Password">
+        <button class="btn" id="login">Login</button>
+    </nav>
+    {{/if}}
+  </header>
+
+  <main>
+    {{{ body }}}
+  </main>
+
+  <footer>
+  </footer>
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+   {{#if logged_out}}
+  <script src="/js/login.js"></script>
+  {{/if}}
+</body>
+
+</html>
