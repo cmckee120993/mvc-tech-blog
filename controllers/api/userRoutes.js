@@ -101,7 +101,35 @@ router.post('/logout', (req, res) => {
 });
 
 router.put('/:id', withAuth, async (req, res) => {
+try {
+    const updateUser = await User.update(req.body, {
+    where: {
+        id: req.params.id
+    }
+});
+if(!updateUser) {
+    res.status(404).json({message: 'No user found with this id.'});
+    return;
+} res.json(updateUser);
+} catch(err) {
+    res.status(500).json(err);
+};
+});
 
-})
+router.delete('/:id', withAuth, async (req, res) => {
+    try { 
+        const deleteUser = await User.destroy({
+        where: {
+            id: req.params.id
+        }
+    });
+    if(!deleteUser) {
+        res.status(404).json({message: 'No user found with this id.'});
+    }
+    res.json(deleteUser);
+} catch(err) {
+    res.status(500).json(err);
+};
+});
 
 module.exports = router;
