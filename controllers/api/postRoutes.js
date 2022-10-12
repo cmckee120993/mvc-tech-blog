@@ -73,3 +73,55 @@ router.get('/:id', async (req, res) => {
         res.status(500).json(err);
     };
 });
+
+router.post('/', withAuth, async (req, res) => {
+   try {
+   const createPost = await Post.create({
+        title: req.body.title,
+        post_content: req.body.post_content,
+        user_id: req.session.user_id
+    });
+    res.json(createPost);
+   } catch(err) {
+    res.status(500).json(err);
+   };
+});
+
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+    const updatePost = await Post.update({
+        title: req.body.title,
+        post_content: req.body.post_content
+    },
+    {
+        where: {
+            id: req.params.id
+        }
+    });
+    if(!updatePost) {
+        res.status(404).json({message: 'No post found with this id.'})
+    };
+    res.json(updatePost);
+} catch (err) {
+    res.status(500).json(err);
+}
+});
+
+router.delete('/:id', withAuth, async (req, res) => {
+   try {
+     const deletePost = await Post.destory({
+        where: {
+            id: req.params.id
+        }
+    })
+    if(!deletePost) {
+        res.status(404).json({message: 'No post found with that id.'});
+        return;
+    };
+    res.json(deletePost);
+} catch(err) {
+    res.status(500).json(err);
+};
+});
+
+module.exports = router;
