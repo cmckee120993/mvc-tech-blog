@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 class User extends Model {
     checkPassword(loginPassword) {
-        return bcrypt.compareSync(longinPassword, this.password);
+        return bcrypt.compareSync(loginPassword, this.password);
     };
 };
 
@@ -47,8 +47,7 @@ User.init(
                 return updatedUserData;
             }
         },
-    },
-    {
+    
         sequelize, 
         timestamps: false,
         freezeTableName: true,
