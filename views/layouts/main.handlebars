@@ -24,14 +24,14 @@
         <a href="#">Logout</a>
     </nav>
     {{/if}}
-    {{#else logged_out}}
+    {{#if logged_out}}
     <nav>
         <a href="/">Home</a>
         <input type="text" placeholder="Username">
         <input type="text" placeholder="Password">
         <button >Login</button>
     </nav>
-    {{/else}}
+    {{/if}}
   </header>
 
   <main>
