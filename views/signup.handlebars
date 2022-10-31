@@ -1,22 +1,20 @@
-<div class="column">
-    <h2 class="title pb-4">Create New Account</h2>
+<div>
+    <h2>Create New Account</h2>
     <form class="signup-form">
         <div>
             <label for="username-signup">Username:</label>
-            <input type="text" id="username-signup"/>
-        </div>
-        <div>
-            <label for="email-signup">Email:</label>
-            <input type="text" id="email-signup"/>
+            <input id="username-signup" type="text"/>
         </div>
         <div>
             <label for="password-signup">Password:</label>
-            <input type="password" id="password-signup"/>
+            <input id="password-signup" type="password"/>
         </div>
         <div>
-            <button type="submit" class="button">Create Account</button>
+            <a href="/login">
+                <button type="submit">Create Account</button>
+            </a>
         </div>
     </form>
 </div>
 
-<script src="../public/js/signup.js"></script>
+<script src="/js/signup.js"></script>
