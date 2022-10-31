@@ -2,16 +2,13 @@ async function updatePost(event) {
     event.preventDefault();
 
     const title = document.querySelector('input[name="post-title"]').value;
-    const post_content = document.querySelector('input[name="post-content"]').value;
-    const id = window.location.toString().split('/') [
-        window.location.toString().split('/').length -1
-    ];
+    const body = document.querySelector('input[name="post-body"]').value;
 
-    const response = await fetch(`/api/posts/${id}`, {
+    const response = await fetch(`/api/post/${postId}`, {
         method: 'PUT',
         body: JSON.stringify({
             title,
-            post_content
+            body
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -25,4 +22,14 @@ async function updatePost(event) {
     }
 };
 
+const postID = document.querySelector('input[name="post-id"]').value;
+
+async function deleteClickHandler() {
+    await fetch(`/api/post/${postId}`, {
+        method: 'DELETE'
+    });
+
+    document.location.replace('/dashboard');
+}
 document.querySelector('.edit-post-form').addEventListener('submit', updatePost);
+document.querySelector('.delete-btn').addEventListener('click', deleteClickHandler);
